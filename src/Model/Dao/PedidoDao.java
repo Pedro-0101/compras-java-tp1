@@ -55,4 +55,8 @@ public class PedidoDao {
 		return pedidoDao.listar();
 	}
 
+	public Integer getContadorSequencial() {
+		return getContadorSequencial();
+	}
+
 }

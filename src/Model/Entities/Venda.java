@@ -1,23 +1,23 @@
 package Model.Entities;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Pedido {
+public class Venda {
     private Long Id;
+    private Pedido pedido;
     private Date Data;
     private Double ValorTotal;
-    private List<ItemPedido> itens = new ArrayList<>();
 
-    public Pedido() {
+    public Venda() {
         this.Id = (long) Core.IDGenerator.getNextId();
     }
 
-    public Pedido(Long id, Date data, Double valorTotal) {
-        Id = (id != null) ? id : (long) Core.IDGenerator.getNextId();
-        Data = data;
-        ValorTotal = valorTotal;
+    public Venda(Pedido pedido) {
+        this.Id = (long) Core.IDGenerator.getNextId();
+        this.pedido = pedido;
+        this.pedido = pedido;
+        this.Data = new Date();
+        this.ValorTotal = pedido.getValorTotal();
     }
 
     public Long getId() {
@@ -26,6 +26,14 @@ public class Pedido {
 
     public void setId(Long id) {
         Id = id;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public Date getData() {
@@ -42,10 +50,5 @@ public class Pedido {
 
     public void setValorTotal(Double valorTotal) {
         ValorTotal = valorTotal;
-    }
-
-    public void adicionarItem(ItemPedido item) {
-        itens.add(item);
-        ValorTotal += item.subtotal();
     }
 }

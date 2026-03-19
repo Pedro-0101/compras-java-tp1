@@ -1,27 +1,26 @@
 package Model.Entities;
 
 public class ItemPedido {
-	
-	private Produto produto; 
-	private double quantidade;
+    private Produto produto;
+    private Integer quantidade;
 
-	
-	//===============
-	public double subTotal() {
-		return produto.getPreco()*quantidade;
-	}
-	//===============
-	
-	public Produto getProduto() {
-		return produto;
-	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-	public double getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(double quantidade) {
-		this.quantidade = quantidade;
-	}
+    public ItemPedido() {
+    }
+
+    public ItemPedido(Integer quantidade, Produto produto) {
+        this.quantidade = quantidade;
+        this.produto = produto;
+    }
+
+    public double subtotal(){
+        return quantidade * produto.getPreco();
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
 }

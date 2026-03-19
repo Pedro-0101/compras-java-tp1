@@ -1,58 +1,42 @@
 package Model.Dao.Impl;
 
+import Model.Entities.Pedido;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import Model.Entities.Pedido;
-
 public class PedidoDaoMemoria {
-	private List<Pedido> pedidos=new ArrayList<>();
-	private Integer contador = 0;
-	private Integer contadorSequencial = 0;
-	
-	public boolean salvar(Pedido pedido) {
-		int size=pedidos.size();
-		pedidos.add(pedido);
-		contador++;
-		contadorSequencial++;
-		if(size<pedidos.size()) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean remover(Pedido pedido) {
-		int size=pedidos.size();
-		pedidos.remove(pedido);
-		contador--;
-		if(size>pedidos.size()) {
-			return true;
-		}
-		return false;
-	}
-	
-	public Pedido buscar(long id) {
-		for(Pedido pedido:pedidos) {
-			if(pedido.getId()==id)
-				return pedido;
-		}
-		return null;
-	}
-	
-	public boolean atualizar(Pedido pedido) {
-		return true;
-	}
-	
-	public List<Pedido> listar(){
-		return pedidos;
-	}
+    private List<Pedido> lista = new ArrayList<>();
+    private Long contador;
 
-	public Integer getContador() {
-		return this.contador;
-	}
-	
-	public Integer getContadorSequencial() {
-		return this.contadorSequencial;
-	}
+    public PedidoDaoMemoria(){
+        this.contador = 1L;
+    }
 
+    public void salvar(Pedido p){
+        p.setId(contador++);
+        lista.add(p);
+    }
+
+    public void remove(Pedido pedido){
+        lista.remove(pedido);
+    }
+
+
+
+    public List<Pedido> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Pedido> lista) {
+        this.lista = lista;
+    }
+
+    public Long getContador() {
+        return contador;
+    }
+
+    public void setContador(Long contador) {
+        this.contador = contador;
+    }
 }
